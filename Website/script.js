@@ -9,7 +9,7 @@ window.onload = function() {
 
 
 var user = function() {
-		console.log("hello bitch");
+		console.log("testing");
     var platform = user_form.elements["platform"].value;
     var gamertag = user_form.elements["gamertag"].value;
     var idnumber = user_form.elements["idnumber"].value;
@@ -29,10 +29,10 @@ var user = function() {
         
         var kills_357 = mw.data.lifetime.itemData.weapon_pistol.iw8_pi_cpapa.properties.kills;
         
-        console.log(name + " " + level + " "+ kdRatio + " " + kills_357);
-        
-        var test = mw.data.lifetime.itemData.weapon_sniper.iw8_sn_alpha50.properties.kdRatio;
+    
+        var test = "Name:" +name + "  Level:" + level + "  kd:"+ kdRatio + "  .357Kills:" + kills_357
          console.log(test);
+        document.getElementById("output").innerHTML = test;
     }
 );
 
