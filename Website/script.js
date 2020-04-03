@@ -19,7 +19,7 @@ var user = function() {
     gamertag = gamertag + "%23" + idnumber; }
     console.log("|" + platform + "|");
     console.log("/n|" + gamertag + "|");
-	$.getJSON(
+	jQuery.getJSON(
     "https://my.callofduty.com/api/papi-client/stats/cod/v1/title/mw/platform/" + platform + "/gamer/" + gamertag + "/profile/type/mp",
     function(mw) {
         console.log(mw);
