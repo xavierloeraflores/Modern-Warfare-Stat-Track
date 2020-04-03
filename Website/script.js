@@ -30,7 +30,7 @@ var user = function() {
         var kills_357 = mw.data.lifetime.itemData.weapon_pistol.iw8_pi_cpapa.properties.kills;
         
     
-        var test = "Name: " +name + " /nLevel: " + level + "/nkd: "+ kdRatio + "/n.357Kills: " + kills_357
+        var test = "Name: " +name + " \nLevel: " + level + "\nkd: "+ kdRatio + "\n.357 Kills: " + kills_357
          console.log(test);
         document.getElementById("output").innerHTML = test;
     }
