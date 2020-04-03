@@ -1,25 +1,26 @@
 
-
+var platform;
+var gamertag;
+var idnumber;
 window.onload = function() {
-    $("user_input").onclick = user;
+    $("user_input").onclick = user();
 
 };
 
 
 var user = function() {
-    var platform = $("platform").value;
-    var gamertag = $("gamertag").value;
-    var idnumber = $("idnumber").value;
+		console.log("hello bitch");
+    var platform = user_form.elements["platform"].value;
+    var gamertag = user_form.elements["gamertag"].value;
+    var idnumber = user_form.elements["idnumber"].value;
 
 
     if (platform == "battle"){
     gamertag = gamertag + "%23" + idnumber; }
     console.log("|" + platform + "|");
     console.log("/n|" + gamertag + "|");
-};
-
-$.getJSON(
-    "https://my.callofduty.com/api/papi-client/stats/cod/v1/title/mw/platform/" + user.platform + "/gamer/" + user.gamertag + "/profile/type/mp",
+	$.getJSON(
+    "https://my.callofduty.com/api/papi-client/stats/cod/v1/title/mw/platform/" + platform + "/gamer/" + gamertag + "/profile/type/mp",
     function(mw) {
         console.log(mw);
         var name = mw.data.username;
@@ -34,5 +35,8 @@ $.getJSON(
          console.log(test);
     }
 );
+
+};
+
 
 
