@@ -32,7 +32,10 @@ var user = function() {
     
         var test = "Name: " +name + " \nLevel: " + level + "\nkd: "+ kdRatio + "\n.357 Kills: " + kills_357
          console.log(test);
-        document.getElementById("output").innerHTML = test;
+        document.getElementById("oN").innerHTML = "Name: " + name;
+		document.getElementById("oL").innerHTML = "Level: " + level;
+        document.getElementById("oKD").innerHTML = "K/D: " + kdRatio;
+	    document.getElementById("o357").innerHTML = "Kills with .357: " + kills_357;
     }
 );
 
