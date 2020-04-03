@@ -3,7 +3,7 @@ var platform;
 var gamertag;
 var idnumber;
 window.onload = function() {
-    $("user_input").onclick = user();
+    jQuery("user_input").onclick = user();
 
 };
 
