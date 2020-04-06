@@ -1,6 +1,8 @@
 var friendcount;
 var friendText;
 var userText;
+var column;
+var add_platform;
 window.onload = function() {
     refresh();
 };
@@ -25,7 +27,6 @@ function adduser(){
 }
 
 function getUserURL(){
-    var add_platform = user_form.elements["platform"].value;
     var add_gamertag = user_form.elements["gamertag"].value;
     var add_idnumber = user_form.elements["idnumber"].value;
     if (add_platform == "battle"){
@@ -50,6 +51,7 @@ function getUserData() {
     	jQuery.getJSON(
     "https://my.callofduty.com/api/papi-client/stats/cod/v1/title/mw/platform/" + localStorage.getItem('user') + "/profile/type/mp",
     gotuserData);
+	
 };
 function getFriendData(i) {
     var user = "friend"+String(i);
@@ -61,13 +63,21 @@ function getFriendData(i) {
     if(i>1){
         getFriendData(i-1);
     };
+
 };
 
 function dataToString(mw){
         var name = mw.data.username;
         var level = mw.data.level;
         var kdRatio = mw.data.lifetime.all.properties.kdRatio;
-        var playerData ="</br><b>" + name + "</b></br>" + "Level: " + level + "\n kd: " + kdRatio + "</br>" ; 
+        var playerData ="</br><b>" + name + "</b></br>" + "Level: " + level + "<br> KD: " + kdRatio + "</br>" ; 
+    return playerData;
+}
+function friendToString(mw){
+        var name = mw.data.username;
+        var level = mw.data.level;
+        var kdRatio = mw.data.lifetime.all.properties.kdRatio;
+        var playerData ="<caption>Friend List</caption><tr><td>" + name + "</td>" + "<td>Level: " + level + "</td><td>KD: " + kdRatio + "</td>" ; 
     return playerData;
 }
 
@@ -78,8 +88,44 @@ function gotuserData(mw){
 }
 function gotfriendData(mw){
     console.log(mw);
-    friendText += dataToString(mw);;
-     document.getElementById("friends").innerHTML = friendText;
+    friendText += friendToString(mw);;
+     document.getElementById("friends").innerHTML = "<tr><th>Name</th><th>Level</th><th>KD</th></tr>" + friendText;
+}
+function sortTable() {
+  var table, rows, switching, i, x, y, shouldSwitch;
+  table = document.getElementById("friends");
+  switching = true;
+  while (switching) {
+    switching = false;
+    rows = table.rows;
+    for (i = 1; i < (rows.length - 1); i++) {
+      shouldSwitch = false;
+      x = rows[i].getElementsByTagName("TD")[column];
+      y = rows[i + 1].getElementsByTagName("TD")[column];
+      if (column < 1){
+	  if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+        shouldSwitch = true;
+        break;
+      }
+	} else{
+	  if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+		shouldSwitch = true;
+        break;
+      }
+	}
+    }
+    if (shouldSwitch) {
+      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+      switching = true;
+    }
+  }
+  console.log(column);
 }
 
-
+function getSortType(type){
+	column = type;
+}
+function getPlatform(platform){
+	add_platform = platform;
+	console.log(platform);
+}

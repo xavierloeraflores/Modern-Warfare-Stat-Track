@@ -8,14 +8,14 @@
 </head>
 <body>
     <form id="user_form" name="user_form" method="get">
-            <label for="platform">Platform:</label>
-            <p><input list="device" id="platform" name="platform">
-	      <datalist id="device">
-    <option value="psn">
-    <option value="xbox">
-    <option value="battle">
-  </datalist> 
-	    </p>
+			
+			<p>Platform</p>
+			<table id="friends"></table>
+			<input type="radio" name = id="platform" value="psn" onclick = "getPlatform(this.value);"> Playstation
+			<input type="radio" name = id="platform" value="xbox" onclick = "getPlatform(this.value);"> Xbox
+			<input type="radio" name = id="platform" value="battle" onclick = "getPlatform(this.value);"> BattleNet <br></br>
+			
+	    
             
 
             <label for="gamertag">Gamertag:</label>
@@ -25,11 +25,31 @@
             <label for="idnumber">BattleNet ID:</label>
             <p><input type="text" id="idnumber" name="idnumber"></p>
             <label>&nbsp;</label>
-            <input type="button" id="user_input" value="Enter the Stat-Track" onclick = "adduser();">
+            <input type="button" id="user_input" value="Set User" onclick = "adduser();">
             <input type="button" id="refresh_button" value="Refresh" onclick = "refresh();">
-            <input type="button" id="friend_button" value="Add Friend" onclick = "addFriend();">
+            <input type="button" id="friend_button" value="Add Friend" onclick = "addFriend();"><br>
+			<p>Sort by:</p>
+			<input type="radio" name = "sortType" value="0" onclick = "getSortType(this.value);">
+			<label for="name">Name</Label>
+			<input type="radio" name = "sortType"  value="1" onclick = "getSortType(this.value);">
+			<label for="name">Level</Label>
+			<input type="radio" name = "sortType"  value="2" onclick = "getSortType(this.value);">
+			<label for="name">KD</Label>
+			<input type="button" name = "sortType"  value ="sort" onclick = "sortTable();"><br>
+			
     </form>
 	<p id="user"></p>
-	<p id="friends"></p>
+	
+<style>
+	table{
+	border-style: solid;
+	border-width: 1px;
+	float: right;
+	caption: top;
+	}
+
+</style>
 </body>
+
 </html>
+
