@@ -77,7 +77,7 @@ function friendToString(mw){
         var name = mw.data.username;
         var level = mw.data.level;
         var kdRatio = mw.data.lifetime.all.properties.kdRatio;
-        var playerData ="<caption>Friend List</caption><tr><td>" + name + "</td>" + "<td>Level: " + level + "</td><td>KD: " + kdRatio + "</td>" ; 
+        var playerData ="<tr><td>" + name + "</td>" + "<td>Level: " + level + "</td><td>KD: " + kdRatio + "</td>" ; 
     return playerData;
 }
 
@@ -89,7 +89,7 @@ function gotuserData(mw){
 function gotfriendData(mw){
     console.log(mw);
     friendText += friendToString(mw);;
-     document.getElementById("friends").innerHTML = "<tr><th>Name</th><th>Level</th><th>KD</th></tr>" + friendText;
+     document.getElementById("friends").innerHTML = "<caption>Friend List</caption><tr><th>Name</th><th>Level</th><th>KD</th></tr>" + friendText;
 }
 function sortTable() {
   var table, rows, switching, i, x, y, shouldSwitch;
