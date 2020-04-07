@@ -5,11 +5,11 @@ var column;
 var add_platform;
 window.onload = function() {
     refresh();
-};
+};//Refreshes player data onload
 
 
 
-function addFriend(){
+function addFriend(){//Adds Friend URL to Local Storage
    if(localStorage.getItem('friendcount')==null){
         friendcount=0; localStorage.setItem('friendcount',friendcount);
     };
@@ -18,22 +18,26 @@ function addFriend(){
     
     localStorage.setItem(friendkey, getUserURL());
     
-}
+}//Adds Friend URL to Local Storage
 
-function adduser(){
+function adduser(){//Adds User Url to local Storage 
     localStorage.setItem('user', getUserURL());
     console.log(localStorage.getItem('user'));
     refresh();
-}
+}//Adds User Url to local Storage 
 
-function getUserURL(){
+function getPlatform(platform){//gets Platform input data
+	add_platform = platform;
+	console.log(platform);
+}//gets Platform input data
+function getUserURL(){//Converts User input into URL data
     var add_gamertag = user_form.elements["gamertag"].value;
     var add_idnumber = user_form.elements["idnumber"].value;
     if (add_platform == "battle"){
         add_gamertag = add_gamertag + "%23" + add_idnumber; }
     var userURL = add_platform + "/gamer/" + add_gamertag;
     return userURL; 
-}
+}//Converts User input into URL data
 
 
 
@@ -45,8 +49,7 @@ function refresh (){
     friendText="";
     getUserData();
     getFriendData(parseInt(localStorage.getItem('friendcount')));
-}
-
+}//calls getUserData & getFriendData
 function getUserData() {
     	jQuery.getJSON(
     "https://my.callofduty.com/api/papi-client/stats/cod/v1/title/mw/platform/" + localStorage.getItem('user') + "/profile/type/mp",
@@ -66,66 +69,67 @@ function getFriendData(i) {
 
 };
 
-function dataToString(mw){
+function dataToString(mw){//Converts user data to string
         var name = mw.data.username;
         var level = mw.data.level;
         var kdRatio = mw.data.lifetime.all.properties.kdRatio;
         var playerData ="</br><b>" + name + "</b></br>" + "Level: " + level + "<br> KD: " + kdRatio + "</br>" ; 
     return playerData;
-}
-function friendToString(mw){
+}//Converts user data to string
+function friendToString(mw){//Converts friend data to string
         var name = mw.data.username;
         var level = mw.data.level;
         var kdRatio = mw.data.lifetime.all.properties.kdRatio;
-        var playerData ="<tr><td>" + name + "</td>" + "<td>Level: " + level + "</td><td>KD: " + kdRatio + "</td>" ; 
+        var playerData ="<tr><td>" + name + "&nbsp;&nbsp;&nbsp;</td>" + "<td>" + level + "</td><td>" + kdRatio + "</td>" ; 
     return playerData;
-}
+}//Converts friend data to string
 
 function gotuserData(mw){
     console.log(mw);
     userText += dataToString(mw);;
      document.getElementById("user").innerHTML = userText;
-}
+}//Inserts user data onto page
 function gotfriendData(mw){
     console.log(mw);
     friendText += friendToString(mw);;
      document.getElementById("friends").innerHTML = "<caption>Friend List</caption><tr><th>Name</th><th>Level</th><th>KD</th></tr>" + friendText;
-}
+}//Inserts user data onto page
+
+
+
+
 function sortTable() {
   var table, rows, switching, i, x, y, shouldSwitch;
   table = document.getElementById("friends");
   switching = true;
   while (switching) {
-    switching = false;
-    rows = table.rows;
-    for (i = 1; i < (rows.length - 1); i++) {
-      shouldSwitch = false;
-      x = rows[i].getElementsByTagName("TD")[column];
-      y = rows[i + 1].getElementsByTagName("TD")[column];
-      if (column < 1){
-	  if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
-        shouldSwitch = true;
-        break;
-      }
-	} else{
-	  if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
-		shouldSwitch = true;
-        break;
-      }
-	}
-    }
-    if (shouldSwitch) {
-      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-      switching = true;
-    }
-  }
-  console.log(column);
-}
+      switching = false;
+      rows = table.rows;
+      for (i = 1; i < (rows.length - 1); i++) {
 
+            shouldSwitch = false;
+            x = rows[i].getElementsByTagName("TD")[column];
+            y = rows[i + 1].getElementsByTagName("TD")[column];
+            if (column < 1){//Sorts Names
+                if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                shouldSwitch = true;
+                break;
+                }
+           }//Sorts Names
+            else{//Sorts numbers
+              if (parseInt(x.innerHTML.toLowerCase()) < parseInt(y.innerHTML.toLowerCase())) {
+                shouldSwitch = true;
+                break;
+          }
+            }//Sorts Names
+        }//Checks Every Row
+      if (shouldSwitch) {
+          rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+          switching = true;
+      }//Actually performs the Switch
+  }//Sorting Algorithm
+  console.log(column);
+}//Sorts
 function getSortType(type){
 	column = type;
-}
-function getPlatform(platform){
-	add_platform = platform;
-	console.log(platform);
-}
+}//Gets user sort input

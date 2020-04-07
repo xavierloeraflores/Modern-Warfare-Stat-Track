@@ -32,13 +32,14 @@
             <input type="button" id="user_input" value="Set User" onclick = "adduser();">
             <input type="button" id="refresh_button" value="Refresh" onclick = "refresh();">
             <input type="button" id="friend_button" value="Add Friend" onclick = "addFriend();"><br>
+    
 			<p>Sort by:</p>
 			<input type="radio" name = "sortType" value="0" onclick = "getSortType(this.value);">
-			<label for="name">Name</Label>
+			<label for="name">Name</label>
 			<input type="radio" name = "sortType"  value="1" onclick = "getSortType(this.value);">
-			<label for="name">Level</Label>
+			<label for="level">Level</label>
 			<input type="radio" name = "sortType"  value="2" onclick = "getSortType(this.value);">
-			<label for="name">KD</Label>
+			<label for="KD">KD</label>
 			<input type="button" name = "sortType"  value ="sort" onclick = "sortTable();"><br>
 			
     </form>
