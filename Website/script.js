@@ -96,8 +96,7 @@ function gotfriendData(mw){
 }//Inserts user data onto page
 
 
-
-
+//Actual
 function sortTable() {
   var table, rows, switching, i, x, y, shouldSwitch;
   table = document.getElementById("friends");
@@ -110,19 +109,24 @@ function sortTable() {
             shouldSwitch = false;
             x = rows[i].getElementsByTagName("TD")[column];
             y = rows[i + 1].getElementsByTagName("TD")[column];
-            if (column < 1){//Sorts Names
-                if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+            if (column ==0 ){//Sorts Names
+                if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()){
                 shouldSwitch = true;
                 break;
-                }
-           }//Sorts Names
-            else{//Sorts numbers
-              if (parseInt(x.innerHTML.toLowerCase()) < parseInt(y.innerHTML.toLowerCase())) {
+                }}
+            if (column ==1 ){//Sorts Levels
+                if (parseInt(x.innerHTML.toLowerCase()) < parseInt(y.innerHTML.toLowerCase())) {
                 shouldSwitch = true;
                 break;
           }
-            }//Sorts Names
-        }//Checks Every Row
+                }//Sorts Levels
+            if (column == 2){//Sorts KD
+              if (parseFloat(x.innerHTML.toLowerCase()) < parseFloat(y.innerHTML.toLowerCase())) {
+                shouldSwitch = true;
+                break;
+          }
+            }//Sorts KD
+      }//Checks Every Row
       if (shouldSwitch) {
           rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
           switching = true;
