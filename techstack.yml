@@ -1,0 +1,39 @@
+repo_name: xavierloeraflores/Modern-Warfare-Stat-Track
+report_id: bc2eb988c59ff230865f7fd4a3df25f7
+repo_type: Public
+timestamp: '2023-11-16T13:03:40+00:00'
+requested_by: xavierloeraflores
+provider: github
+branch: master
+detected_tools_count: 3
+tools:
+- name: JavaScript
+  description: Lightweight, interpreted, object-oriented language with first-class
+    functions
+  website_url: https://developer.mozilla.org/en-US/docs/Web/JavaScript
+  open_source: true
+  hosted_saas: false
+  category: Languages & Frameworks
+  sub_category: Languages
+  image_url: https://img.stackshare.io/service/1209/javascript.jpeg
+  detection_source: docs/assets/js/jquery.min.js
+  last_updated_by: Xavier Loera Flores
+  last_updated_on: 2020-04-12 08:22:05.000000000 Z
+- name: Git
+  description: Fast, scalable, distributed revision control system
+  website_url: http://git-scm.com/
+  open_source: true
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Version Control System
+  image_url: https://img.stackshare.io/service/1046/git.png
+  detection_source: Repo Metadata
+- name: HTML
+  description: Hypertext Markup Language for creating web pages.
+  website_url: http://
+  open_source: false
+  hosted_saas: false
+  image_url: https://img.stackshare.io/service/2270/no-img-open-source.png
+  detection_source: docs/Website/Main.html
+  last_updated_by: Xavier Loera Flores
+  last_updated_on: 2020-04-12 08:22:05.000000000 Z
